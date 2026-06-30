@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Formula1 Dashboard"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "e6800fef-15ca-4c92-8743-ebe7b265e9bf"
+  }
+}
