@@ -1,0 +1,11 @@
+
+*.pbix
+.pbi/
+*.Report/.pbi/
+*.SemanticModel/.pbi/
+**/cache.abf
+**/.pbi/localSettings.json
+
+
+.env
+*.env
