@@ -1,0 +1,34 @@
+table Dim_Status
+	lineageTag: 8f25d856-c536-4e76-a054-206ac23d4e01
+
+	column statusId
+		dataType: int64
+		formatString: 0
+		lineageTag: b189ac34-5475-4039-bb6a-74a17ad48804
+		summarizeBy: none
+		sourceColumn: statusId
+
+		annotation SummarizationSetBy = Automatic
+
+	column status
+		dataType: string
+		lineageTag: 2c7026cc-9102-460c-96e1-3504b88c4c55
+		summarizeBy: none
+		sourceColumn: status
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_Status = m
+		mode: import
+		source =
+				let
+				  Origem = Csv.Document(File.Contents("C:\Users\ferna\Downloads\archiveF1\status.csv"), [Delimiter = ",", Columns = 2, QuoteStyle = QuoteStyle.None]),
+				  #"Cabeçalhos promovidos" = Table.PromoteHeaders(Origem, [PromoteAllScalars = true]),
+				  #"Tipo de coluna alterado" = Table.TransformColumnTypes(#"Cabeçalhos promovidos", {{"statusId", Int64.Type}, {"status", type text}})
+				in
+				  #"Tipo de coluna alterado"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

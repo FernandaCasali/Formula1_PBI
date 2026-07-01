@@ -1,0 +1,168 @@
+table Dim_Corrida
+	lineageTag: ce61d862-9023-4d87-8fd6-306e90749781
+
+	column raceId
+		dataType: int64
+		formatString: 0
+		lineageTag: 6f8756f7-2028-44d1-9062-cb2ed8aa7476
+		summarizeBy: none
+		sourceColumn: raceId
+
+		annotation SummarizationSetBy = Automatic
+
+	column year
+		dataType: int64
+		formatString: 0
+		lineageTag: 134cfb04-bd8c-4fb1-811e-0a0c7518ecb9
+		summarizeBy: sum
+		sourceColumn: year
+
+		annotation SummarizationSetBy = Automatic
+
+	column round
+		dataType: int64
+		formatString: 0
+		lineageTag: 889f00f6-bd20-4a4a-b59f-a65c9f99e2ed
+		summarizeBy: sum
+		sourceColumn: round
+
+		annotation SummarizationSetBy = Automatic
+
+	column circuitId
+		dataType: int64
+		formatString: 0
+		lineageTag: 37f099dc-cf1d-4dcf-9e1d-7cffadf7f675
+		summarizeBy: none
+		sourceColumn: circuitId
+
+		annotation SummarizationSetBy = Automatic
+
+	column name
+		dataType: string
+		lineageTag: b0485ec4-afa4-49a7-89ea-77542212210a
+		summarizeBy: none
+		sourceColumn: name
+
+		annotation SummarizationSetBy = Automatic
+
+	column date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: b80998ee-199c-45f6-8737-6e4d992eedc4
+		summarizeBy: none
+		sourceColumn: date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column time
+		dataType: string
+		lineageTag: 186d0430-487b-4ed0-9d23-fdc56f68bc06
+		summarizeBy: none
+		sourceColumn: time
+
+		annotation SummarizationSetBy = Automatic
+
+	column url
+		dataType: string
+		lineageTag: 8e8d8d6d-9305-4828-a9c8-d4a603f90013
+		summarizeBy: none
+		sourceColumn: url
+
+		annotation SummarizationSetBy = Automatic
+
+	column fp1_date
+		dataType: string
+		lineageTag: 6f9f0b39-5d0a-4b88-b01b-3b86eca87842
+		summarizeBy: none
+		sourceColumn: fp1_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column fp1_time
+		dataType: string
+		lineageTag: 65af808b-6c01-4ae9-a28b-d7406487599f
+		summarizeBy: none
+		sourceColumn: fp1_time
+
+		annotation SummarizationSetBy = Automatic
+
+	column fp2_date
+		dataType: string
+		lineageTag: 6fb8f27d-c598-468b-bc2b-37d34040c896
+		summarizeBy: none
+		sourceColumn: fp2_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column fp2_time
+		dataType: string
+		lineageTag: 4d614d19-833c-48da-ae06-a8fbc7170c1c
+		summarizeBy: none
+		sourceColumn: fp2_time
+
+		annotation SummarizationSetBy = Automatic
+
+	column fp3_date
+		dataType: string
+		lineageTag: f9420cd7-b250-4abe-b217-9c7c8054920c
+		summarizeBy: none
+		sourceColumn: fp3_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column fp3_time
+		dataType: string
+		lineageTag: 58ac8331-29ca-4a3e-89f7-b26a7b4021b5
+		summarizeBy: none
+		sourceColumn: fp3_time
+
+		annotation SummarizationSetBy = Automatic
+
+	column quali_date
+		dataType: string
+		lineageTag: e4750fc6-4bd2-4d62-8dff-21b74a39b63c
+		summarizeBy: none
+		sourceColumn: quali_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column quali_time
+		dataType: string
+		lineageTag: 80157632-db5a-4080-8a74-30ea3203da28
+		summarizeBy: none
+		sourceColumn: quali_time
+
+		annotation SummarizationSetBy = Automatic
+
+	column sprint_date
+		dataType: string
+		lineageTag: 4ca9a1b5-e39e-42c6-a501-2138fddda4ad
+		summarizeBy: none
+		sourceColumn: sprint_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column sprint_time
+		dataType: string
+		lineageTag: fe61c5f0-ccf4-4aae-b6f3-e8f135cba16a
+		summarizeBy: none
+		sourceColumn: sprint_time
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_Corrida = m
+		mode: import
+		source =
+				let
+				  Origem = Csv.Document(File.Contents("C:\Users\ferna\Downloads\archiveF1\races.csv"), [Delimiter = ",", Columns = 18, QuoteStyle = QuoteStyle.None]),
+				  #"Cabeçalhos promovidos" = Table.PromoteHeaders(Origem, [PromoteAllScalars = true]),
+				  #"Tipo de coluna alterado" = Table.TransformColumnTypes(#"Cabeçalhos promovidos", {{"raceId", Int64.Type}, {"year", Int64.Type}, {"round", Int64.Type}, {"circuitId", Int64.Type}, {"name", type text}, {"date", type date}, {"time", type text}, {"url", type text}, {"fp1_date", type text}, {"fp1_time", type text}, {"fp2_date", type text}, {"fp2_time", type text}, {"fp3_date", type text}, {"fp3_time", type text}, {"quali_date", type text}, {"quali_time", type text}, {"sprint_date", type text}, {"sprint_time", type text}})
+				in
+				  #"Tipo de coluna alterado"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

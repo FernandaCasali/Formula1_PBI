@@ -1,0 +1,93 @@
+table Dim_Circuito
+	lineageTag: 77b4157c-9ec3-47d7-9e3f-7178e6a9b511
+
+	column circuitId
+		dataType: int64
+		formatString: 0
+		lineageTag: fece961c-3afb-4aee-b0cf-f61d97135a31
+		summarizeBy: none
+		sourceColumn: circuitId
+
+		annotation SummarizationSetBy = Automatic
+
+	column circuitRef
+		dataType: string
+		lineageTag: ca82cad5-7e84-4d59-a8cb-628ca7082f74
+		summarizeBy: none
+		sourceColumn: circuitRef
+
+		annotation SummarizationSetBy = Automatic
+
+	column name
+		dataType: string
+		lineageTag: 70fb1428-5768-4998-90fb-d11c6863c524
+		summarizeBy: none
+		sourceColumn: name
+
+		annotation SummarizationSetBy = Automatic
+
+	column location
+		dataType: string
+		lineageTag: 99b14c35-7573-446f-b18f-34f4fa066a27
+		summarizeBy: none
+		sourceColumn: location
+
+		annotation SummarizationSetBy = Automatic
+
+	column country
+		dataType: string
+		lineageTag: d155a6e4-9f3d-420c-a5cb-707cd88877fe
+		summarizeBy: none
+		sourceColumn: country
+
+		annotation SummarizationSetBy = Automatic
+
+	column lat
+		dataType: int64
+		formatString: 0
+		lineageTag: 0b7de430-5024-4938-bba3-d0bc55ab2999
+		summarizeBy: none
+		sourceColumn: lat
+
+		annotation SummarizationSetBy = Automatic
+
+	column lng
+		dataType: int64
+		formatString: 0
+		lineageTag: 67d908f0-d52e-4937-8fc1-4a5aec91b904
+		summarizeBy: none
+		sourceColumn: lng
+
+		annotation SummarizationSetBy = Automatic
+
+	column alt
+		dataType: int64
+		formatString: 0
+		lineageTag: 3f91cf5c-c806-4671-9499-3bff093df575
+		summarizeBy: none
+		sourceColumn: alt
+
+		annotation SummarizationSetBy = Automatic
+
+	column url
+		dataType: string
+		lineageTag: b71a7e2f-f03e-41f3-bb0d-2a5aa10401e9
+		summarizeBy: none
+		sourceColumn: url
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_Circuito = m
+		mode: import
+		source =
+				let
+				  Origem = Csv.Document(File.Contents("C:\Users\ferna\Downloads\archiveF1\circuits.csv"), [Delimiter = ",", Columns = 9, Encoding = 65001, QuoteStyle = QuoteStyle.None]),
+				  #"Cabeçalhos promovidos" = Table.PromoteHeaders(Origem, [PromoteAllScalars = true]),
+				  #"Tipo de coluna alterado" = Table.TransformColumnTypes(#"Cabeçalhos promovidos", {{"circuitId", Int64.Type}, {"circuitRef", type text}, {"name", type text}, {"location", type text}, {"country", type text}, {"lat", Int64.Type}, {"lng", Int64.Type}, {"alt", Int64.Type}, {"url", type text}})
+				in
+				  #"Tipo de coluna alterado"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

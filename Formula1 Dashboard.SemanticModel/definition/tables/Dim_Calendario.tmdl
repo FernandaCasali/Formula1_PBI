@@ -1,0 +1,114 @@
+table Dim_Calendario
+	lineageTag: f2e63ec7-0c05-4a18-901d-85896fd6dc6d
+
+	column Date
+		formatString: General Date
+		lineageTag: 9f0c60aa-d556-41ac-a8db-0acbe06e598c
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		variation Variation
+			isDefault
+			relationship: ba062820-a57c-4c7b-97c3-a5dd479d3d6c
+			defaultHierarchy: LocalDateTable_77fdc0d4-a20d-4832-a7ca-6af805bc2ab6.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column DataKey
+		lineageTag: 5e25a30c-27a0-4149-abd0-6f96ddbbfdb5
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [DataKey]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ano
+		formatString: 0
+		lineageTag: 4b257136-8165-4cda-8fec-17d675405962
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Ano]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Mês
+		formatString: 0
+		lineageTag: defdb40b-60e3-46e1-bbf3-209afa475fe8
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Mês]
+
+		annotation SummarizationSetBy = Automatic
+
+	column NomeMês
+		lineageTag: 86b48a8e-c31c-40ba-b0af-2ae8d644a704
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [NomeMês]
+
+		annotation SummarizationSetBy = Automatic
+
+	column NomeMêsAbrev
+		lineageTag: 13a1c3d6-c273-48e3-90e5-8afdb941c468
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [NomeMêsAbrev]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Trimestre
+		lineageTag: 4f36a637-f2c9-418c-bbf1-fec348f819b8
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Trimestre]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Dia
+		formatString: 0
+		lineageTag: 45b6fb8b-f277-4c99-8db5-3d4411e9f44e
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Dia]
+
+		annotation SummarizationSetBy = Automatic
+
+	column DiaSemana
+		lineageTag: 894c7a27-8a3c-4398-9283-b3d71bbd6ae4
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [DiaSemana]
+
+		annotation SummarizationSetBy = Automatic
+
+	column AnoMes
+		lineageTag: 3d407df4-4f91-4704-a6b1-e529fc83cead
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [AnoMes]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_Calendario = calculated
+		mode: import
+		source =
+				
+				VAR _MinDate = DATE(1950, 1, 1)
+				VAR _MaxDate = DATE(2025, 12, 31)
+				RETURN
+				ADDCOLUMNS(
+				    CALENDAR(_MinDate, _MaxDate),
+				    "DataKey", FORMAT([Date], "YYYYMMDD"),
+				    "Ano", YEAR([Date]),
+				    "Mês", MONTH([Date]),
+				    "NomeMês", FORMAT([Date], "MMMM"),
+				    "NomeMêsAbrev", FORMAT([Date], "MMM"),
+				    "Trimestre", "T" & QUARTER([Date]),
+				    "Dia", DAY([Date]),
+				    "DiaSemana", FORMAT([Date], "dddd"),
+				    "AnoMes", FORMAT([Date], "YYYY-MM")
+				)
+
+	annotation PBI_Id = f0b3215ea43246149534b0a794de5f15
+
