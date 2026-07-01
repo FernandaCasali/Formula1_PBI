@@ -72,95 +72,16 @@ table Dim_Corrida
 
 		annotation SummarizationSetBy = Automatic
 
-	column fp1_date
-		dataType: string
-		lineageTag: 6f9f0b39-5d0a-4b88-b01b-3b86eca87842
-		summarizeBy: none
-		sourceColumn: fp1_date
-
-		annotation SummarizationSetBy = Automatic
-
-	column fp1_time
-		dataType: string
-		lineageTag: 65af808b-6c01-4ae9-a28b-d7406487599f
-		summarizeBy: none
-		sourceColumn: fp1_time
-
-		annotation SummarizationSetBy = Automatic
-
-	column fp2_date
-		dataType: string
-		lineageTag: 6fb8f27d-c598-468b-bc2b-37d34040c896
-		summarizeBy: none
-		sourceColumn: fp2_date
-
-		annotation SummarizationSetBy = Automatic
-
-	column fp2_time
-		dataType: string
-		lineageTag: 4d614d19-833c-48da-ae06-a8fbc7170c1c
-		summarizeBy: none
-		sourceColumn: fp2_time
-
-		annotation SummarizationSetBy = Automatic
-
-	column fp3_date
-		dataType: string
-		lineageTag: f9420cd7-b250-4abe-b217-9c7c8054920c
-		summarizeBy: none
-		sourceColumn: fp3_date
-
-		annotation SummarizationSetBy = Automatic
-
-	column fp3_time
-		dataType: string
-		lineageTag: 58ac8331-29ca-4a3e-89f7-b26a7b4021b5
-		summarizeBy: none
-		sourceColumn: fp3_time
-
-		annotation SummarizationSetBy = Automatic
-
-	column quali_date
-		dataType: string
-		lineageTag: e4750fc6-4bd2-4d62-8dff-21b74a39b63c
-		summarizeBy: none
-		sourceColumn: quali_date
-
-		annotation SummarizationSetBy = Automatic
-
-	column quali_time
-		dataType: string
-		lineageTag: 80157632-db5a-4080-8a74-30ea3203da28
-		summarizeBy: none
-		sourceColumn: quali_time
-
-		annotation SummarizationSetBy = Automatic
-
-	column sprint_date
-		dataType: string
-		lineageTag: 4ca9a1b5-e39e-42c6-a501-2138fddda4ad
-		summarizeBy: none
-		sourceColumn: sprint_date
-
-		annotation SummarizationSetBy = Automatic
-
-	column sprint_time
-		dataType: string
-		lineageTag: fe61c5f0-ccf4-4aae-b6f3-e8f135cba16a
-		summarizeBy: none
-		sourceColumn: sprint_time
-
-		annotation SummarizationSetBy = Automatic
-
 	partition Dim_Corrida = m
 		mode: import
 		source =
 				let
 				  Origem = Csv.Document(File.Contents("C:\Users\ferna\Downloads\archiveF1\races.csv"), [Delimiter = ",", Columns = 18, QuoteStyle = QuoteStyle.None]),
 				  #"Cabeçalhos promovidos" = Table.PromoteHeaders(Origem, [PromoteAllScalars = true]),
-				  #"Tipo de coluna alterado" = Table.TransformColumnTypes(#"Cabeçalhos promovidos", {{"raceId", Int64.Type}, {"year", Int64.Type}, {"round", Int64.Type}, {"circuitId", Int64.Type}, {"name", type text}, {"date", type date}, {"time", type text}, {"url", type text}, {"fp1_date", type text}, {"fp1_time", type text}, {"fp2_date", type text}, {"fp2_time", type text}, {"fp3_date", type text}, {"fp3_time", type text}, {"quali_date", type text}, {"quali_time", type text}, {"sprint_date", type text}, {"sprint_time", type text}})
+				  #"Tipo de coluna alterado" = Table.TransformColumnTypes(#"Cabeçalhos promovidos", {{"raceId", Int64.Type}, {"year", Int64.Type}, {"round", Int64.Type}, {"circuitId", Int64.Type}, {"name", type text}, {"date", type date}, {"time", type text}, {"url", type text}, {"fp1_date", type text}, {"fp1_time", type text}, {"fp2_date", type text}, {"fp2_time", type text}, {"fp3_date", type text}, {"fp3_time", type text}, {"quali_date", type text}, {"quali_time", type text}, {"sprint_date", type text}, {"sprint_time", type text}}),
+				    #"Colunas Removidas" = Table.RemoveColumns(#"Tipo de coluna alterado",{"fp1_date", "fp1_time", "fp2_date", "fp2_time", "fp3_date", "fp3_time", "quali_date", "quali_time", "sprint_date", "sprint_time"})
 				in
-				  #"Tipo de coluna alterado"
+				  #"Colunas Removidas"
 
 	annotation PBI_NavigationStepName = Navegação
 

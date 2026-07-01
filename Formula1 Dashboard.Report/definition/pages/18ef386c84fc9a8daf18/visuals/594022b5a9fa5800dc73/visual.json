@@ -1,0 +1,112 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "594022b5a9fa5800dc73",
+  "position": {
+    "x": 1102.9071803852889,
+    "y": 215.20140105078806,
+    "z": 0,
+    "height": 437.12784588441326,
+    "width": 800.28021015761817,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Dim_Piloto"
+                    }
+                  },
+                  "Property": "forename"
+                }
+              },
+              "queryRef": "Dim_Piloto.forename",
+              "nativeQueryRef": "forename"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas"
+                    }
+                  },
+                  "Property": "Total Pontos"
+                }
+              },
+              "queryRef": "Medidas.Total Pontos",
+              "nativeQueryRef": "Total Pontos"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas"
+                    }
+                  },
+                  "Property": "Vitórias"
+                }
+              },
+              "queryRef": "Medidas.Vitórias",
+              "nativeQueryRef": "Vitórias"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "249ec42410a897095a07",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Dim_Piloto"
+              }
+            },
+            "Property": "forename"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "28e4332332ccf3e185de",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Medidas"
+              }
+            },
+            "Property": "Vitórias"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "da6f65168e7089edb854",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Medidas"
+              }
+            },
+            "Property": "Total Pontos"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

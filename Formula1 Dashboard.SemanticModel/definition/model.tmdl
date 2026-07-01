@@ -10,7 +10,7 @@ annotation __PBI_TimeIntelligenceEnabled = 1
 
 annotation PBI_ProTooling = ["DevMode"]
 
-annotation PBI_QueryOrder = ["Fato_Resultados","Dim_Piloto","Dim_Equipe","Dim_Corrida","Dim_Circuito","Dim_Status"]
+annotation PBI_QueryOrder = ["Fato_Resultados","Dim_Piloto","Dim_Equipe","Dim_Corrida","Dim_Circuito","Dim_Status","Medidas"]
 
 ref table Fato_Resultados
 ref table Dim_Piloto
@@ -22,6 +22,7 @@ ref table Dim_Circuito
 ref table Dim_Status
 ref table Dim_Calendario
 ref table LocalDateTable_77fdc0d4-a20d-4832-a7ca-6af805bc2ab6
+ref table Medidas
 
 ref cultureInfo pt-BR
 
