@@ -1,0 +1,98 @@
+table Medidas
+	lineageTag: 8b1c396f-d24a-4407-9425-02124cffe614
+
+	measure 'Total Pontos' = SUM(Fato_Resultados[points])
+		formatString: 0
+		displayFolder: Medidas base
+		lineageTag: e61fdfea-fa70-4309-88de-f1965e6dbcc2
+
+	measure 'Total Corridas' = DISTINCTCOUNT(Fato_Resultados[raceId])
+		formatString: 0
+		displayFolder: Medidas base
+		lineageTag: 58d621e0-4578-4a05-92ee-0b3f382d71c3
+
+	measure Vitórias =
+			
+			CALCULATE(
+			    COUNTROWS(Fato_Resultados),
+			    Fato_Resultados[position] = 1
+			)
+		formatString: 0
+		displayFolder: Medidas base
+		lineageTag: 526ec212-db9c-4b50-8469-c70f04656ff1
+
+	measure Pódios =
+			
+			CALCULATE(
+			    COUNTROWS(Fato_Resultados),
+			    Fato_Resultados[position] <= 3
+			)
+		formatString: 0
+		displayFolder: Medidas base
+		lineageTag: a30b41ec-7237-49b3-b868-a41f28071fe3
+
+	measure 'Posições Ganhas' =
+			
+			SUMX(
+			    FILTER(Fato_Resultados, NOT(ISBLANK(Fato_Resultados[position]))),
+			    Fato_Resultados[grid] - Fato_Resultados[position]
+			)
+		displayFolder: Medidas performance
+		lineageTag: 4443306d-a42e-495d-ae73-d30fd9b4a9d6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure DNFs = ```
+			
+			CALCULATE(
+			    COUNTROWS(Fato_Resultados),
+			    FILTER(Dim_Status, Dim_Status[status] <> "Finished" 
+			        && NOT(CONTAINSSTRING(Dim_Status[status], "Lap")))
+			)
+			```
+		formatString: 0
+		displayFolder: Medidas performance
+		lineageTag: 93959f37-93b4-4b19-8553-972b9c29a604
+
+	measure 'Taxa de DNF %' =
+			
+			DIVIDE([DNFs], [Total Corridas], 0)
+		displayFolder: Medidas performance
+		lineageTag: b822de87-f865-49eb-83d5-d7febadf1800
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Pontos por Corrida' =
+			
+			DIVIDE([Total Pontos], [Total Corridas], 0)
+		displayFolder: Medidas performance
+		lineageTag: 4cd4b374-c45b-4c38-9eac-8a5a0e0aa9c0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Pontos Acumulados Temporada' =
+			
+			CALCULATE(
+			    [Total Pontos],
+			    FILTER(
+			        ALLSELECTED(Dim_Calendario),
+			        Dim_Calendario[Date] <= MAX(Dim_Calendario[Date])
+			    )
+			)
+		formatString: 0
+		displayFolder: Medidas performance
+		lineageTag: e5a658e1-1265-45b6-a305-cc0ef1d47a4e
+
+	partition Medidas = m
+		mode: import
+		source =
+				let
+				  Origem = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Coluna 1" = _t]),
+				    #"Colunas Removidas" = Table.RemoveColumns(Origem,{"Coluna 1"})
+				in
+				  #"Colunas Removidas"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+
