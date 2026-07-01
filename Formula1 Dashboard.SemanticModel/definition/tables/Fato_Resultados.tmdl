@@ -56,9 +56,10 @@ table Fato_Resultados
 		annotation SummarizationSetBy = Automatic
 
 	column position
-		dataType: string
+		dataType: int64
+		formatString: 0
 		lineageTag: c0c0f9b0-7e27-40c1-a035-47471923171b
-		summarizeBy: none
+		summarizeBy: sum
 		sourceColumn: position
 
 		annotation SummarizationSetBy = Automatic
@@ -175,7 +176,7 @@ table Fato_Resultados
 				    #"Valor Substituído4" = Table.ReplaceValue(#"Valor Substituído3","\N",null,Replacer.ReplaceValue,{"fastestLapSpeed"}),
 				    #"Valor Substituído5" = Table.ReplaceValue(#"Valor Substituído4","\N",null,Replacer.ReplaceValue,{"rank"}),
 				    #"Valor Substituído6" = Table.ReplaceValue(#"Valor Substituído5","\N",null,Replacer.ReplaceValue,{"fastestLap"}),
-				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Valor Substituído6",{{"fastestLapSpeed", type number}, {"milliseconds", Int64.Type}, {"rank", Int64.Type}, {"fastestLap", Int64.Type}})
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Valor Substituído6",{{"fastestLapSpeed", type number}, {"milliseconds", Int64.Type}, {"rank", Int64.Type}, {"fastestLap", Int64.Type}, {"position", Int64.Type}})
 				in
 				    #"Tipo Alterado"
 
