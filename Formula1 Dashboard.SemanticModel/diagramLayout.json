@@ -1,0 +1,113 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 18.666666666666668
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 894.35754790452017,
+            "y": 520.28491311868243
+          },
+          "nodeIndex": "Fato_Resultados",
+          "nodeLineageTag": "58667371-b7df-4180-b6b6-b95bfd763906",
+          "size": {
+            "height": 549.33333333333337,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 824.117674327184,
+            "y": 105.94350447719097
+          },
+          "nodeIndex": "Dim_Piloto",
+          "nodeLineageTag": "a2f8fd21-4008-4038-ac10-662f974f72e2",
+          "size": {
+            "height": 309.84615384615387,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 998.17929036367923,
+            "y": 1312.4166174627146
+          },
+          "nodeIndex": "Dim_Equipe",
+          "nodeLineageTag": "5d04657a-72b5-4005-bdca-5902b5179e22",
+          "size": {
+            "height": 232.30769230769238,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 496.16120553705991,
+            "y": 691.08042754511985
+          },
+          "nodeIndex": "Dim_Corrida",
+          "nodeLineageTag": "ce61d862-9023-4d87-8fd6-306e90749781",
+          "size": {
+            "height": 556.92307692307713,
+            "width": 234
+          },
+          "zIndex": 7
+        },
+        {
+          "location": {
+            "x": 20,
+            "y": 1112.6802172770281
+          },
+          "nodeIndex": "Dim_Circuito",
+          "nodeLineageTag": "77b4157c-9ec3-47d7-9e3f-7178e6a9b511",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 1304.2528963560283,
+            "y": 604.33086315591481
+          },
+          "nodeIndex": "Dim_Status",
+          "nodeLineageTag": "8f25d856-c536-4e76-a054-206ac23d4e01",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 26.15384615384616,
+            "y": 542.14017872787815
+          },
+          "nodeIndex": "Dim_Calendario",
+          "nodeLineageTag": "f2e63ec7-0c05-4a18-901d-85896fd6dc6d",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 6
+        }
+      ],
+      "name": "Todas as tabelas",
+      "zoomValue": 75,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "Todas as tabelas",
+  "defaultDiagram": "Todas as tabelas"
+}
