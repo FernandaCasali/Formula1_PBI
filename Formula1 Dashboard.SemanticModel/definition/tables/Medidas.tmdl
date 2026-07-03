@@ -83,6 +83,90 @@ table Medidas
 		displayFolder: Medidas performance
 		lineageTag: e5a658e1-1265-45b6-a305-cc0ef1d47a4e
 
+	measure 'Ranking Construtor' =
+			
+			IF(
+			    HASONEVALUE(Dim_Equipe[name]),
+			    RANKX(
+			        ALLSELECTED(Dim_Equipe[name]),
+			        [Total Pontos],
+			        ,
+			        DESC,
+			        Dense
+			    )
+			)
+		formatString: 0
+		displayFolder: Construtores
+		lineageTag: 50f633ac-be34-493c-bd05-52f9486ebc75
+
+	measure 'Construtor Campeão' =
+			
+			VAR TabelaRank =
+			    ADDCOLUMNS(
+			        ALLSELECTED(Dim_Equipe[name]),
+			        "@Pontos", [Total Pontos]
+			    )
+			VAR Topo =
+			    TOPN(1, TabelaRank, [@Pontos], DESC)
+			RETURN
+			    MAXX(Topo, Dim_Equipe[name])
+		displayFolder: Construtores
+		lineageTag: 830bca0b-4c4c-421c-b4eb-9b8199f39b8c
+
+	measure 'Pontos do Campeão' =
+			
+			MAXX(
+			    TOPN(
+			        1,
+			        ADDCOLUMNS(ALLSELECTED(Dim_Equipe[name]), "@P", [Total Pontos]),
+			        [@P], DESC
+			    ),
+			    [@P]
+			)
+		formatString: 0
+		displayFolder: Construtores
+		lineageTag: 3fe6ee08-4a57-4585-9d72-e0373a33a89f
+
+	measure 'Equipes que Pontuaram' =
+			
+			CALCULATE(
+			    DISTINCTCOUNT(Fato_Resultados[constructorId]),
+			    Fato_Resultados[points] > 0
+			)
+		formatString: 0
+		displayFolder: Construtores
+		lineageTag: 1be46c20-d333-47a3-af3c-da618698090a
+
+	measure 'Vitórias 1-2' =
+			
+			-- corridas onde a equipe fez dobradinha (1º e 2º)
+			SUMX(
+			    VALUES(Fato_Resultados[raceId]),
+			    VAR Pos1e2 =
+			        CALCULATE(
+			            COUNTROWS(Fato_Resultados),
+			            Fato_Resultados[position] <= 2
+			        )
+			    RETURN IF(Pos1e2 = 2, 1, 0)
+			)
+		formatString: 0
+		displayFolder: Construtores
+		lineageTag: 64ac4853-646e-427e-8f9f-50da9b2168eb
+
+	measure 'Equipe Mais Confiável' =
+			
+			VAR TabelaDNF =
+			    ADDCOLUMNS(
+			        ALLSELECTED(Dim_Equipe[name]),
+			        "@Taxa", [Taxa de DNF %]
+			    )
+			VAR Menor =
+			    TOPN(1, TabelaDNF, [@Taxa], ASC)
+			RETURN
+			    MAXX(Menor, Dim_Equipe[name])
+		displayFolder: Construtores
+		lineageTag: c4176786-b3e5-4f05-a25e-d517d5e40fa5
+
 	partition Medidas = m
 		mode: import
 		source =

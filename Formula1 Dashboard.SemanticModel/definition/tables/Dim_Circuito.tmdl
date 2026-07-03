@@ -43,7 +43,7 @@ table Dim_Circuito
 		annotation SummarizationSetBy = Automatic
 
 	column lat
-		dataType: int64
+		dataType: double
 		formatString: 0
 		lineageTag: 0b7de430-5024-4938-bba3-d0bc55ab2999
 		summarizeBy: none
@@ -52,7 +52,7 @@ table Dim_Circuito
 		annotation SummarizationSetBy = Automatic
 
 	column lng
-		dataType: int64
+		dataType: double
 		formatString: 0
 		lineageTag: 67d908f0-d52e-4937-8fc1-4a5aec91b904
 		summarizeBy: none
@@ -83,9 +83,10 @@ table Dim_Circuito
 				let
 				  Origem = Csv.Document(File.Contents("C:\Users\ferna\Downloads\archiveF1\circuits.csv"), [Delimiter = ",", Columns = 9, Encoding = 65001, QuoteStyle = QuoteStyle.None]),
 				  #"Cabeçalhos promovidos" = Table.PromoteHeaders(Origem, [PromoteAllScalars = true]),
-				  #"Tipo de coluna alterado" = Table.TransformColumnTypes(#"Cabeçalhos promovidos", {{"circuitId", Int64.Type}, {"circuitRef", type text}, {"name", type text}, {"location", type text}, {"country", type text}, {"lat", Int64.Type}, {"lng", Int64.Type}, {"alt", Int64.Type}, {"url", type text}})
+				  #"Tipo de coluna alterado" = Table.TransformColumnTypes(#"Cabeçalhos promovidos", {{"circuitId", Int64.Type}, {"circuitRef", type text}, {"name", type text}, {"location", type text}, {"country", type text}, {"lat", Int64.Type}, {"lng", Int64.Type}, {"alt", Int64.Type}, {"url", type text}}),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Tipo de coluna alterado",{{"lat", type number}, {"lng", type number}})
 				in
-				  #"Tipo de coluna alterado"
+				  #"Tipo Alterado"
 
 	annotation PBI_NavigationStepName = Navegação
 

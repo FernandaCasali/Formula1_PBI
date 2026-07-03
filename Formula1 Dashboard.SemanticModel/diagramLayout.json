@@ -5,13 +5,13 @@
       "ordinal": 0,
       "scrollPosition": {
         "x": 0,
-        "y": 18.666666666666668
+        "y": 536.67407393775352
       },
       "nodes": [
         {
           "location": {
             "x": 894.35754790452017,
-            "y": 520.28491311868243
+            "y": 573.25666535727794
           },
           "nodeIndex": "Fato_Resultados",
           "nodeLineageTag": "58667371-b7df-4180-b6b6-b95bfd763906",
@@ -24,7 +24,7 @@
         {
           "location": {
             "x": 824.117674327184,
-            "y": 105.94350447719097
+            "y": 158.91525671578648
           },
           "nodeIndex": "Dim_Piloto",
           "nodeLineageTag": "a2f8fd21-4008-4038-ac10-662f974f72e2",
@@ -37,7 +37,7 @@
         {
           "location": {
             "x": 998.17929036367923,
-            "y": 1312.4166174627146
+            "y": 1365.3883697013102
           },
           "nodeIndex": "Dim_Equipe",
           "nodeLineageTag": "5d04657a-72b5-4005-bdca-5902b5179e22",
@@ -50,7 +50,7 @@
         {
           "location": {
             "x": 496.16120553705991,
-            "y": 691.08042754511985
+            "y": 744.05217978371536
           },
           "nodeIndex": "Dim_Corrida",
           "nodeLineageTag": "ce61d862-9023-4d87-8fd6-306e90749781",
@@ -63,7 +63,7 @@
         {
           "location": {
             "x": 20,
-            "y": 1112.6802172770281
+            "y": 1165.6519695156235
           },
           "nodeIndex": "Dim_Circuito",
           "nodeLineageTag": "77b4157c-9ec3-47d7-9e3f-7178e6a9b511",
@@ -76,7 +76,7 @@
         {
           "location": {
             "x": 1304.2528963560283,
-            "y": 604.33086315591481
+            "y": 657.30261539451033
           },
           "nodeIndex": "Dim_Status",
           "nodeLineageTag": "8f25d856-c536-4e76-a054-206ac23d4e01",
@@ -89,7 +89,7 @@
         {
           "location": {
             "x": 26.15384615384616,
-            "y": 542.14017872787815
+            "y": 595.11193096647366
           },
           "nodeIndex": "Dim_Calendario",
           "nodeLineageTag": "f2e63ec7-0c05-4a18-901d-85896fd6dc6d",
@@ -98,10 +98,23 @@
             "width": 234
           },
           "zIndex": 6
+        },
+        {
+          "location": {
+            "x": 1618.919563022695,
+            "y": 900.36215488520349
+          },
+          "nodeIndex": "Medidas",
+          "nodeLineageTag": "8b1c396f-d24a-4407-9425-02124cffe614",
+          "size": {
+            "height": 302.66666666666674,
+            "width": 234
+          },
+          "zIndex": 0
         }
       ],
       "name": "Todas as tabelas",
-      "zoomValue": 75,
+      "zoomValue": 53.216657925726651,
       "pinKeyFieldsToTop": false,
       "showExtraHeaderInfo": false,
       "hideKeyFieldsWhenCollapsed": false,

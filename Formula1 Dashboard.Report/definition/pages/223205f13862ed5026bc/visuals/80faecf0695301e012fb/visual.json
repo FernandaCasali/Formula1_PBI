@@ -1,0 +1,71 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "80faecf0695301e012fb",
+  "position": {
+    "x": 341.60269746753715,
+    "y": 33.058325561374559,
+    "z": 1,
+    "height": 163.0877394361145,
+    "width": 279.89382308630462,
+    "tabOrder": 1
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas"
+                    }
+                  },
+                  "Property": "Construtor Campeão"
+                }
+              },
+              "queryRef": "Medidas.Construtor Campeão",
+              "nativeQueryRef": "Construtor Campeão"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "12f5dff6be9768b9359d",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Medidas"
+              }
+            },
+            "Property": "Construtor Campeão"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}
